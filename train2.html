@@ -1,0 +1,82 @@
+<html>
+
+<head>
+	<title>Particle Login Example</title>
+	<style>
+		.button {
+			display: inline-block;
+			padding: 50px 100px;
+			font-size: 24px;
+			cursor: pointer;
+			text-align: center;
+			text-decoration: none;
+			outline: none;
+			color: #fff;
+			background-color: #4CAF50;
+			border: none;
+			border-radius: 15px;
+			box-shadow: 0 9px #999;
+		}
+
+		.button:hover {
+			background-color: #3e8e41
+		}
+
+		.button:active {
+			background-color: #3e8e41;
+			box-shadow: 0 5px #666;
+			transform: translateY(4px);
+		}
+
+		#wrapper {
+			width: 100%;
+			height: 300px;
+			border: 1px solid black;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+	</style>
+</head>
+
+<body>
+	<div id="wrapper">
+		<button class="button" onmousedown="buttonDown()" ontouchstart="buttonDown()" onmouseup="buttonUp()" ontouchend="buttonUp()">Go</button>
+
+	</div>
+	<script src="https://cdn.jsdelivr.net/particle-api-js/5/particle.min.js"></script>
+	<script>
+		var particle = new Particle();
+		var penguToken = "91df28a04e730a0a3c1a3898e357f94c117aca5f"
+		var token = "91df28a04e730a0a3c1a3898e357f94c117aca5f"; // from result of particle.login
+		var penguID = "3b001c000d51353432383931"
+
+		function buttonDown() {
+
+
+			particle.callFunction({
+				deviceId: penguID,
+				name: 'moveCar',
+				argument: 'fw',
+				auth: token
+			});
+		}
+
+		function buttonUp() {
+			console.log('button released');
+			particle.callFunction({
+				deviceId: penguID,
+				name: 'moveCar',
+				argument: 'st',
+				auth: token
+			});
+		};
+
+	</script>
+
+
+
+</body>
+
+</html>
