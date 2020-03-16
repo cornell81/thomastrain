@@ -5,7 +5,7 @@
 	<style>
 		.button {
 			display: inline-block;
-			padding: 50px 100px;
+			padding: 20px 40px;
 			font-size: 24px;
 			cursor: pointer;
 			text-align: center;
@@ -29,14 +29,13 @@
 		}
 
 		#wrapper {
-			width: 100%;
-			height: 300px;
+			width: 50%;
+			height: 200px;
 			border: 1px solid black;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 		}
-
 	</style>
 </head>
 
@@ -44,9 +43,13 @@
 	<div id="wrapper">
 		<button class="button" onmousedown="buttonDown()" ontouchstart="buttonDown()" onmouseup="buttonUp()" ontouchend="buttonUp()">Go</button>
 	</div>
-	<div>
-		<input type="number" id='gotime'><br>
-		<input type="number" id='lapcount'>
+	<div id="wrapper">
+		<label>Seconds:</label><input type="number" id='gotime'>
+		<button class="button" id='secondsbutton'>Go</button>
+	</div>
+	<div id="wrapper">
+		<label>Laps:</label><input type="number" id='gotime'>
+		<button class="button" id='lapsbutton'>Go</button>
 	</div>
 
 	<script src="https://cdn.jsdelivr.net/particle-api-js/5/particle.min.js"></script>
@@ -82,10 +85,14 @@
 			trainStop()
 		};
 
+		function timeGo() {
+			var t = document.getElementById("gotime").value;
+			t = t * 1000;
+			trainGo();
+			setTimeout(trainStop, t)
+		}
 	</script>
 
 
 
-</body>
-
-</html>
+</body></html>
