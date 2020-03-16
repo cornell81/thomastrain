@@ -43,8 +43,12 @@
 <body>
 	<div id="wrapper">
 		<button class="button" onmousedown="buttonDown()" ontouchstart="buttonDown()" onmouseup="buttonUp()" ontouchend="buttonUp()">Go</button>
-
 	</div>
+	<div>
+		<input type="number" id='gotime'><br>
+		<input type="number" id='lapcount'>
+	</div>
+
 	<script src="https://cdn.jsdelivr.net/particle-api-js/5/particle.min.js"></script>
 	<script>
 		var particle = new Particle();
@@ -52,9 +56,7 @@
 		var token = "91df28a04e730a0a3c1a3898e357f94c117aca5f"; // from result of particle.login
 		var penguID = "3b001c000d51353432383931"
 
-		function buttonDown() {
-
-
+		function trainGo() {
 			particle.callFunction({
 				deviceId: penguID,
 				name: 'moveCar',
@@ -63,14 +65,21 @@
 			});
 		}
 
-		function buttonUp() {
-			console.log('button released');
+		function trainStop() {
 			particle.callFunction({
 				deviceId: penguID,
 				name: 'moveCar',
 				argument: 'st',
 				auth: token
 			});
+		}
+
+		function buttonDown() {
+			trainGo();
+		}
+
+		function buttonUp() {
+			trainStop()
 		};
 
 	</script>
