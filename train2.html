@@ -44,12 +44,12 @@
 		<button class="button" onmousedown="buttonDown()" ontouchstart="buttonDown()" onmouseup="buttonUp()" ontouchend="buttonUp()">Go</button>
 	</div>
 	<div id="wrapper">
-		<label>Seconds:</label><input type="number" id='gotime'>
-		<button class="button" id='secondsbutton'>Go</button>
+		<label>Seconds:</label><input type="number" id='gotimeinput'>
+		<button class="button" id='secondsbutton' onmousedown="timeGo()">Go</button>
 	</div>
 	<div id="wrapper">
-		<label>Laps:</label><input type="number" id='gotime'>
-		<button class="button" id='lapsbutton'>Go</button>
+		<label>Laps:</label><input type="number" id='lapinput'>
+		<button class="button" id='lapsbutton' onmousedown="lapsGo()">Go</button>
 	</div>
 
 	<script src="https://cdn.jsdelivr.net/particle-api-js/5/particle.min.js"></script>
@@ -86,10 +86,19 @@
 		};
 
 		function timeGo() {
-			var t = document.getElementById("gotime").value;
+			console.log('timeGo');
+			var t = document.getElementById("gotimeinput").value;
 			t = t * 1000;
 			trainGo();
-			setTimeout(trainStop, t)
+			setTimeout(trainStop, t);
+		}
+
+		function lapsGo() {
+			var laps = document.getElementById("lapinput").value;
+			var secLap = 19;
+			var t = laps * secLap * 1000;
+			trainGo();
+			setTimeout(trainStop, t);
 		}
 	</script>
 
